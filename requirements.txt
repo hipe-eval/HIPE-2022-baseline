@@ -1,0 +1,10 @@
+datasets
+docopt
+hipe-commons
+numpy
+pandas
+seqeval
+sklearn-crfsuite
+torch
+transformers
+urllib3
