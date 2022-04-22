@@ -1,0 +1,21 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.735	0.844	0.786				200	72	37
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	BUILDING	0.37	0.526	0.435				10	17	9
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	LOC	0.793	0.876	0.832				176	46	25
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	STREET	0.609	0.824	0.7				14	9	3
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.706	0.81	0.754				192	80	45
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	BUILDING	0.37	0.526	0.435				10	17	9
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	LOC	0.757	0.836	0.794				168	54	33
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	STREET	0.609	0.824	0.7				14	9	3
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.735	0.844	0.786	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	BUILDING	0.37	0.526	0.435	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	LOC	0.793	0.876	0.832	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	STREET	0.609	0.824	0.7	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.706	0.81	0.754	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	BUILDING	0.37	0.526	0.435	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	LOC	0.757	0.836	0.794	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	STREET	0.609	0.824	0.7	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-micro-strict-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL									
+/scratch/sven/hipe_baseline/topres19th_en_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-macro_doc-strict-TIME-ALL-LED-ALL	ALL									

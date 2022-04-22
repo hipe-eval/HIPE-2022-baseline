@@ -3,6 +3,7 @@
 It runs on a single GPU."""
 
 import json
+import logging
 import time
 import pandas as pd
 import os
@@ -91,12 +92,15 @@ def train(config: 'argparse.Namespace',
                 model.zero_grad()
                 global_step += 1
 
-            if config.do_debug:
-                break
+                if config.do_debug:
+                    break
+
+
 
         # ============================ Evaluate and append during training ============================
-        epoch_results = seqeval_to_df(evaluate_dataset(eval_dataset, model, config.batch_size, config.device,
-                                                       config.ids_to_labels, config.do_debug))
+        epoch_results = evaluate_dataset(eval_dataset, model, config.batch_size, config.device,
+                                                       config.ids_to_labels, config.do_debug)
+        epoch_results = seqeval_to_df(epoch_results)
 
         epoch_data = pd.DataFrame({("TRAINING", "EP"): [epoch_num + 1],
                                    ("TRAINING", "TIME"): [time.time() - epoch_time],
@@ -120,7 +124,7 @@ def train(config: 'argparse.Namespace',
         else:
             count_no_improvement += 1
 
-        if count_no_improvement == config.early_stopping_patience or config.do_debug:
+        if (count_no_improvement == config.early_stopping_patience and config.do_early_stopping) or config.do_debug:
             break
 
     train_results.to_csv(os.path.join(config.output_dir, "results/seqeval/train_results.tsv"), sep='\t', index=False)
@@ -139,9 +143,8 @@ def main(config):
                   default=lambda o: '<not serializable>')
 
     # todo change model_name_or_path to model_config ; make a double path on data
-    tokenizer = transformers.AutoTokenizer.from_pretrained(config.model_name_or_path, add_prefix_space=True) \
-        if "roberta" in config.model_name_or_path else transformers.AutoTokenizer.from_pretrained(
-        config.model_name_or_path)
+    # tokenizer = transformers.AutoTokenizer.from_pretrained(config.model_name_or_path, add_prefix_space=True)  # for roberta exclusively
+    tokenizer = transformers.AutoTokenizer.from_pretrained(config.model_name_or_path)
 
     datasets = prepare_datasets(config, tokenizer)
 
@@ -166,8 +169,24 @@ def main(config):
 
 
 if __name__ == '__main__':
-    logger = get_custom_logger(__name__)
+    logger = get_custom_logger(__name__, level=logging.DEBUG)
     config = initialize_config(
-        # json_path='transformers_baseline/data/test_config.json'
+        # json_path='data/ajmc_de_coarse.json'
     )
     main(config)
+
+#%%
+# from hipe_commons.helpers.tsv import get_tsv_data
+# logger = get_custom_logger(__name__, )
+# config = initialize_config(json_path='/scratch/sven/tmp/HIPE-2022-baseline/transformers_baseline/data/ajmc_de_coarse.json')
+# tokenizer = transformers.AutoTokenizer.from_pretrained(config.model_name_or_path)
+#
+# data = get_tsv_data(url=config.train_url)
+# len(data.split('\n'))
+# datasets = prepare_datasets(config, tokenizer)
+#
+# model = transformers.AutoModelForTokenClassification.from_pretrained(config.model_name_or_path,
+#                                                                      num_labels=config.num_labels)
+# model.to(config.device)
+
+

@@ -17,7 +17,7 @@ logger = get_custom_logger(__name__)
 
 def seqeval_evaluation(predictions: List[List[str]], groundtruth: List[List[str]]):
     """Simple wrapper around seqeval."""
-    metric = datasets.load_metric("seqeval")
+    metric = datasets.load_metric('seqeval')
     return metric.compute(predictions=predictions, references=groundtruth)
 
 
@@ -55,12 +55,12 @@ def evaluate_dataset(dataset: transformers_baseline.data_preparation.HipeDataset
 
     # Remove ignored index (special tokens)
     predictions = [
-        [ids_to_labels[p] for (p, l) in zip(prediction, label) if l != -100]
-        for prediction, label in zip(predictions, groundtruth)
+        [ids_to_labels[p] for (p, l) in zip(example_pred, example_gt) if l != -100]
+        for example_pred, example_gt in zip(predictions, groundtruth)
     ]
     groundtruth = [
-        [ids_to_labels[l] for (p, l) in zip(prediction, label) if l != -100]
-        for prediction, label in zip(predictions, groundtruth)
+        [ids_to_labels[l] for l in label if l != -100]
+        for label in groundtruth
     ]
 
     return seqeval_evaluation(predictions, groundtruth)
@@ -93,7 +93,7 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
 
 
 def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, method: str,
-                       hipe_script_path: str = None, output_suffix: str = None, env: str = 'HIPE-2022-baseline'):
+                       hipe_script_path: str = None, output_suffix: str = None):
     """Evaluates CLEF-HIPE compliant files.
      If `method` is set to `"hipe"`, runs run CLEF-HIPE-evaluation within `os.system`. Else if `method` is set to
      `"seqeval`, imports the files as dfs."""
@@ -101,7 +101,7 @@ def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, 
     if method == "hipe":
         os.system(
             f"""
-            conda activate {env}; python {hipe_script_path} \
+            python {hipe_script_path} \
             --skip-check \
             --ref {groundtruth_path} \
             --pred {preds_path} \
@@ -134,7 +134,8 @@ def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, 
             results.to_csv(os.path.join(output_dir, "{}_results.tsv".format(method)), sep="\t", index=False)
 
 
-def seqeval_to_df(seqeval_output: dict, do_debug :bool= False) -> pd.DataFrame:
+def seqeval_to_df(seqeval_output: dict,
+                  do_debug :bool= False) -> pd.DataFrame:
     """Transforms `seqeval_output` to a MultiIndex pd.DataFrame.
 
     :param seqeval_output: A dict containing:
@@ -157,9 +158,7 @@ def seqeval_to_df(seqeval_output: dict, do_debug :bool= False) -> pd.DataFrame:
             for subkey in seqeval_output[key].keys():
                 to_df[(key, abbreviations[subkey])] = [seqeval_output[key][subkey]]
 
-    ordered_keys = [("ALL", key) for key in ["F1", "A", "P", "R"]] + \
-                   [(key1, key2) for key1 in ['AAUTHOR', 'AWORK', 'FRAGREF', 'REFAUWORK', 'REFSCOPE']
-                    for key2 in ['F1', 'P', 'R', 'N']]
+    ordered_keys = [("ALL", key) for key in ["F1", "A", "P", "R"]] + [k for k in to_df.keys() if k[0] !='ALL']
 
     if do_debug:
         to_df_debug = {}
@@ -222,5 +221,10 @@ def evaluate_hipe(dataset: 'transformers_baseline.data_preparation.HipeDataset',
                        method='hipe',
                        hipe_script_path=hipe_script_path,
                        )
-
-
+#
+#
+# #%%
+# preds = [['B-A', 'B-B'],['B-A', 'B-B']]
+# gt = [['B-A', 'B-B'],['B-A', 'B-B']]
+#
+# result = seqeval_evaluation(preds, gt)

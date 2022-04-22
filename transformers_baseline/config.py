@@ -62,17 +62,6 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         required=False,
                         help="Name of the tsv col to extract labels from")
 
-    parser.add_argument("--text_column_name",
-                        type=str,
-                        required=False,
-                        help="Name of the tsv col to extract texts from")
-
-    parser.add_argument("--segmentation_flag",
-                        type=str,
-                        required=False,
-                        help="""Use if you want to pre-segment data. Use 'NOSEGMENTATION' to let the tokenizer chunk
-                        the data to bits of the model's max_length (512)""")
-
     # ================ MODEL INFO ======================================================================================
     parser.add_argument("--model_name_or_path",
                         type=str,
@@ -86,7 +75,7 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         default=False,
                         help="whether to train. Leave to false if you just want to evaluate")
 
-    parser.add_argument("--do_hipe_eval",
+    parser.add_argument("--do_eval",
                         action="store_true",
                         default=False,
                         help="Performs CLEF-HIPE evaluation, alone or at the end of training if `do_train`.")
@@ -101,8 +90,13 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         default=False,
                         help="Whether to overwrite the output dir")
 
-    # =================== HUGGINGFACE TRAINING PARAMETERS ==============================================================
-    # These arguments are defaulted to `transformers.TrainingArguments` default values.
+    parser.add_argument("--do_early_stopping",
+                        action="store_true",
+                        default=False,
+                        help="Breaks stops training after `early_stopping_patience` epochs without improvement.")
+
+    # =============================== TRAINING PARAMETERS ==============================================================
+
     parser.add_argument("--device_name",
                         type=str,
                         default="cuda:0",
@@ -112,6 +106,11 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         type=int,
                         default=3,
                         help="Total number of training epochs to perform.")
+
+    parser.add_argument("--early_stopping_patience",
+                        type=int,
+                        default=3,
+                        help="Number of epochs to wait for early stopping")
 
     parser.add_argument("--seed",
                         type=int,
@@ -180,7 +179,7 @@ def initialize_config(json_path: str = None) -> argparse.Namespace:
     elif sys.argv[0].endswith("pipeline.py") and len(sys.argv) > 1:
         config = create_pipeline_parser().parse_args()
         if config.config_path:
-            config = parse_config_from_json(config.json_path)
+            config = parse_config_from_json(config.config_path)
         return post_initialize_config(config)
 
 

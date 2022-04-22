@@ -1,0 +1,21 @@
+System	Evaluation	Label	P	R	F1	F1_std	P_std	R_std	TP	FP	FN
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0.607	0.865	0.714				752	486	117
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	LOC	0.668	0.888	0.762				458	228	58
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	ORG	0.118	0.146	0.13				6	45	35
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-fuzzy-TIME-ALL-LED-ALL	PERS	0.575	0.923	0.708				288	213	24
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ALL	0.548	0.78	0.644				678	560	191
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	LOC	0.63	0.837	0.719				432	254	84
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	ORG	0.098	0.122	0.109				5	46	36
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-micro-strict-TIME-ALL-LED-ALL	PERS	0.481	0.772	0.593				241	260	71
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL	0.607	0.865	0.714	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	LOC	0.668	0.888	0.762	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	ORG	0.118	0.146	0.13	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-fuzzy-TIME-ALL-LED-ALL	PERS	0.575	0.923	0.708	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ALL	0.548	0.78	0.644	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	LOC	0.63	0.837	0.719	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	ORG	0.098	0.122	0.109	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-LIT-macro_doc-strict-TIME-ALL-LED-ALL	PERS	0.481	0.772	0.593	0.0	0.0	0.0			
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-micro-fuzzy-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-micro-strict-TIME-ALL-LED-ALL	ALL	0	0	0				0	0	0
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-macro_doc-fuzzy-TIME-ALL-LED-ALL	ALL									
+/scratch/sven/hipe_baseline/letemps_fr_coarse/results/hipe_eval/predictions.tsv	NE-COARSE-METO-macro_doc-strict-TIME-ALL-LED-ALL	ALL									

@@ -19,6 +19,7 @@ def get_custom_logger(name: str,
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(level)
     stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
 
     return logger
 

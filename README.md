@@ -34,8 +34,7 @@ python pipeline.py
 With the following args:
 ```
 usage: pipeline.py [-h] [--train_path TRAIN_PATH] [--train_url TRAIN_URL] [--eval_path EVAL_PATH] [--eval_url EVAL_URL] [--output_dir OUTPUT_DIR]
-                   [--hipe_script_path HIPE_SCRIPT_PATH] [--config_path CONFIG_PATH] [--labels_column LABELS_COLUMN] [--text_column_name TEXT_COLUMN_NAME]
-                   [--segmentation_flag SEGMENTATION_FLAG] [--model_name_or_path MODEL_NAME_OR_PATH] [--do_train] [--do_hipe_eval] [--do_debug] [--overwrite_output_dir]
+                   [--hipe_script_path HIPE_SCRIPT_PATH] [--config_path CONFIG_PATH] [--labels_column LABELS_COLUMN] [--model_name_or_path MODEL_NAME_OR_PATH] [--do_train] [--do_hipe_eval] [--do_debug] [--overwrite_output_dir]
                    [--device_name DEVICE_NAME] [--epochs EPOCHS] [--seed SEED] [--batch_size BATCH_SIZE] [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]
 
 options:
@@ -55,10 +54,6 @@ options:
                         The path to a config json file from which to extract config. Overwrites other specified config
   --labels_column LABELS_COLUMN
                         Name of the tsv col to extract labels from
-  --text_column_name TEXT_COLUMN_NAME
-                        Name of the tsv col to extract texts from
-  --segmentation_flag SEGMENTATION_FLAG
-                        Use if you want to pre-segment data. Use 'NOSEGMENTATION' to let the tokenizer chunk the data to bits of the model's max_length (512)
   --model_name_or_path MODEL_NAME_OR_PATH
                         Absolute path to model directory or HF model name (e.g. 'bert-base-cased')
   --do_train            whether to train. Leave to false if you just want to evaluate
