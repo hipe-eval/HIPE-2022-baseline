@@ -70,7 +70,7 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
                              labels: List[List[Union[str, None]]],
                              tsv_line_numbers: List[List[Union[int, None]]],
                              output_file: str,
-                             labels_column: int,
+                             labels_column: str,
                              tsv_path: str = None,
                              tsv_url: str = None, ):
     """Get the source tsv, replaces its labels with predicted labels and write a new file to `output`.
@@ -201,21 +201,22 @@ def evaluate_hipe(dataset: 'transformers_baseline.data_preparation.HipeDataset',
         with open(groundtruth_tsv_path, 'w') as f:
             f.write(groundtruth_tsv_data)
 
+    # Todo : this could be harmonized with model.predict_and_write
     dataloader = DataLoader(dataset, sampler=SequentialSampler(dataset), batch_size=batch_size)
     predictions = predict_batches(dataloader, model, device=device, do_debug=do_debug).tolist()
 
-    # get the labels
+    # get the labels, append None if token has no line number
     predictions = [
-        [ids_to_labels[p] if l != -100 else None for (p, l) in zip(prediction, label)]
-        for prediction, label in zip(predictions, dataset.labels)
+        [ids_to_labels[p] if l else None for (p, l) in zip(prediction, line_numbers)]
+        for prediction, line_numbers in zip(predictions, dataset.tsv_line_numbers)
     ]
 
-    preds_path = os.path.join(output_dir, 'results/hipe_eval/predictions.tsv')
+    preds_path = os.path.join(output_dir, 'predictions.tsv')
     write_predictions_to_tsv(dataset.words, predictions, dataset.tsv_line_numbers,
                              preds_path,
                              labels_column, groundtruth_tsv_path, groundtruth_tsv_url)
 
-    evaluate_iob_files(output_dir=os.path.join(output_dir, 'results/hipe_eval'),
+    evaluate_iob_files(output_dir=output_dir,
                        groundtruth_path=groundtruth_tsv_path,
                        preds_path=preds_path,
                        method='hipe',

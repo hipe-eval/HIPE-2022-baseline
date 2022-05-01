@@ -1,5 +1,5 @@
 from hipe_commons.helpers.tsv import tsv_to_dict
-from typing import List, Dict, Iterable, Tuple, Generator
+from typing import List, Dict, Iterable, Tuple, Generator, Optional
 import torch
 
 
@@ -17,7 +17,7 @@ class HipeDataset(torch.utils.data.Dataset):
         self.token_offsets = [e.word_ids for e in batch_encoding.encodings]
 
     def __getitem__(self, idx):
-        item = {k: torch.tensor(v[idx]) for k, v in self.batch_encoding.items() if k!='overflow_to_sample_mapping'}
+        item = {k: torch.tensor(v[idx]) for k, v in self.batch_encoding.items() if k != 'overflow_to_sample_mapping'}
         item['labels'] = torch.tensor(self.labels[idx])
         return item
 
@@ -103,7 +103,6 @@ def align_elements(tokens_to_words_offsets: 'transformers.tokenizers.Encoding',
     return aligned_elements
 
 
-
 def prepare_datasets(config: 'argparse.Namespace', tokenizer):
     data = {}
     for split in ['train', 'eval']:
@@ -115,7 +114,6 @@ def prepare_datasets(config: 'argparse.Namespace', tokenizer):
     config.labels_to_ids = {label: i for i, label in enumerate(config.unique_labels)}
     config.ids_to_labels = {id: tag for tag, id in config.labels_to_ids.items()}
     config.num_labels = len(config.unique_labels)
-
 
     for split in data.keys():
         data[split]['batchencoding'] = tokenizer(data[split]['TOKEN'],
@@ -131,8 +129,7 @@ def prepare_datasets(config: 'argparse.Namespace', tokenizer):
                                 data[split]['batchencoding'].encodings]
 
         data[split]['tsv_line_numbers'] = [align_elements(e.word_ids, data[split]['n']) for e in
-                                data[split]['batchencoding'].encodings]
-
+                                           data[split]['batchencoding'].encodings]
 
     datasets = {}
     for split in data.keys():
@@ -144,3 +141,22 @@ def prepare_datasets(config: 'argparse.Namespace', tokenizer):
     return datasets
 
 
+def create_prediction_dataset(tokenizer, path: Optional[str] = None, url: Optional[str] = None):
+    """Creates a `HipeDataset` for prediction (i.e. without labels) from a `path` or an `url`."""
+    data = tsv_to_dict(path=path, url=url)
+    data['batchencoding'] = tokenizer(data['TOKEN'],
+                                      padding=True,
+                                      truncation=True,
+                                      is_split_into_words=True,
+                                      return_overflowing_tokens=True)
+
+    data['words'] = [align_elements(e.word_ids, data['TOKEN']) for e in
+                     data['batchencoding'].encodings]
+
+    data['tsv_line_numbers'] = [align_elements(e.word_ids, data['n']) for e in
+                                data['batchencoding'].encodings]
+
+    return HipeDataset(batch_encoding=data['batchencoding'],
+                       labels=data["tsv_line_numbers"],  # Dummy column
+                       tsv_line_numbers=data["tsv_line_numbers"],
+                       words=data['words'])

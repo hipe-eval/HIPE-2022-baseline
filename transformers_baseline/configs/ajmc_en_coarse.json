@@ -6,7 +6,7 @@
   "labels_column": "NE-COARSE-LIT",
   "model_name_or_path": "xlm-roberta-base",
   "do_train": true,
-  "do_eval": true,
+  "do_hipe_eval": true,
   "overwrite_output_dir": true,
   "device_name": "cuda",
   "epochs": 10

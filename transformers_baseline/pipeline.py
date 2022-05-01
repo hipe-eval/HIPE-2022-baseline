@@ -5,6 +5,7 @@ It runs on a single GPU."""
 import json
 import logging
 import time
+
 import pandas as pd
 import os
 import numpy as np
@@ -14,6 +15,7 @@ from torch.utils.data import DataLoader, RandomSampler
 from transformers_baseline.evaluation import evaluate_dataset, seqeval_to_df, evaluate_hipe
 from transformers_baseline.config import initialize_config
 from transformers_baseline.data_preparation import prepare_datasets
+from transformers_baseline.model import predict_and_write_tsv
 from transformers_baseline.utils import set_seed, get_custom_logger
 
 
@@ -58,7 +60,7 @@ def train(config: 'argparse.Namespace',
     logger.info(f"""Running training on {len(train_dataset)} examples, for {config.epochs} epochs.""")
 
     global_step = 0
-    best_f1 = 0.5
+    best_f1 = 0
     count_no_improvement = 0
     train_results = pd.DataFrame()
 
@@ -112,27 +114,27 @@ def train(config: 'argparse.Namespace',
 
                 count_no_improvement = 0
                 best_f1 = epoch_results[('ALL', 'F1')][0]
-
+                epoch_results.to_csv(os.path.join(config.seqeval_output_dir, "best_results.tsv"), sep='\t', index=False)
 
                 model.save_pretrained(config.model_save_dir)
                 tokenizer.save_pretrained(config.model_save_dir)
                 torch.save(config, os.path.join(config.model_save_dir, "training_args.bin"))
-                epoch_results.to_csv(os.path.join(config.output_dir, "results/seqeval/best_results.tsv"), sep='\t',
-                                     index=False)
+
 
             else:
                 count_no_improvement += 1
 
             if count_no_improvement == config.early_stopping_patience and config.do_early_stopping:
                 break
-        else:
-            if
 
         if config.do_debug:
             break
     if config.evaluate_during_training:
-        train_results.to_csv(os.path.join(config.output_dir, "results/seqeval/train_results.tsv"), sep='\t', index=False)
+        train_results.to_csv(os.path.join(config.seqeval_output_dir, "train_results.tsv"), sep='\t', index=False)
     else:
+        model.save_pretrained(config.model_save_dir)
+        tokenizer.save_pretrained(config.model_save_dir)
+        torch.save(config, os.path.join(config.model_save_dir, "training_args.bin"))
 
 
 def main(config):
@@ -140,6 +142,7 @@ def main(config):
 
     # Create directories
     config.model_save_dir = os.path.join(config.output_dir, "model")
+    config.predictions_dir = os.path.join(config.output_dir, "predictions")
     config.seqeval_output_dir = os.path.join(config.output_dir, 'results/seqeval')
     config.hipe_output_dir = os.path.join(config.output_dir, 'results/hipe_eval')
 
@@ -166,23 +169,35 @@ def main(config):
     if config.do_train:
         train(config, model, datasets['train'], datasets['eval'], tokenizer)
 
-    if config.do_eval:
+    if config.do_hipe_eval:
         evaluate_hipe(dataset=datasets['eval'],
                       model=model,
                       device=config.device,
                       ids_to_labels=config.ids_to_labels,
-                      output_dir=config.output_dir,
+                      output_dir=config.hipe_output_dir,
                       labels_column=config.labels_column,
                       hipe_script_path=config.hipe_script_path,
                       groundtruth_tsv_path=config.eval_path,
                       groundtruth_tsv_url=config.eval_url,
                       )
 
+    if config.do_predict:
+        for url in config.prediction_urls:
+            predict_and_write_tsv(model=model, device=config.device, output_dir=config.predictions_dir,
+                                  tokenizer=tokenizer, ids_to_labels=config.ids_to_labels,
+                                  labels_column=config.labels_column, url=url)
+        for path in config.prediction_paths:
+            predict_and_write_tsv(model=model, device=config.device, output_dir=config.predictions_dir,
+                                  tokenizer=tokenizer, ids_to_labels=config.ids_to_labels,
+                                  labels_column=config.labels_column, url=path)
+
+
+
 
 if __name__ == '__main__':
     logger = get_custom_logger(__name__, level=logging.DEBUG)
     config = initialize_config(
-        # json_path='data/ajmc_de_coarse.json'
+        json_path='configs/ajmc_de_coarse.json'
     )
     main(config)
 
