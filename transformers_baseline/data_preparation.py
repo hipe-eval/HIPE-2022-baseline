@@ -45,10 +45,7 @@ def sort_ner_labels(labels: Iterable[str]):
 
     assert 'O' in labels, """Label 'O' not found in labels."""
     labels = [l for l in labels if l != 'O']
-
     uniques = set([l[2:] for l in labels])
-    assert all(['B-' + u in labels and 'I-' + u in labels for u in
-                uniques]), """Some labels do not have their 'B-' or 'I-' declination."""
 
     sorted_labels = ['O']
     for l in sorted(uniques):

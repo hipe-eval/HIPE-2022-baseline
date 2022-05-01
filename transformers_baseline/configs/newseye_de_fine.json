@@ -1,0 +1,13 @@
+{
+  "train_url": "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/newseye/de/HIPE-2022-v2.1-newseye-train-de.tsv",
+  "eval_url": "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/newseye/de/HIPE-2022-v2.1-newseye-dev2-de.tsv",
+  "output_dir": "/scratch/sven/hipe_baseline/newseye_de_fine",
+  "labels_column": "NE-FINE-LIT",
+  "epochs": 10,
+  "hipe_script_path": "/scratch/sven/packages/HIPE-scorer/clef_evaluation.py",
+  "model_name_or_path": "xlm-roberta-base",
+  "do_train": true,
+  "do_eval": true,
+  "overwrite_output_dir": true,
+  "device_name": "cuda"
+}

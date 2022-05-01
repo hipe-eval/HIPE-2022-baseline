@@ -93,7 +93,7 @@ def write_predictions_to_tsv(words: List[List[Union[str, None]]],
 
 
 def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, method: str,
-                       hipe_script_path: str = None, output_suffix: str = None):
+                       hipe_script_path: str = None, output_suffix: str = None, task:str = 'nerc_coarse'):
     """Evaluates CLEF-HIPE compliant files.
      If `method` is set to `"hipe"`, runs run CLEF-HIPE-evaluation within `os.system`. Else if `method` is set to
      `"seqeval`, imports the files as dfs."""
@@ -105,7 +105,7 @@ def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, 
             --skip-check \
             --ref {groundtruth_path} \
             --pred {preds_path} \
-            --task nerc_coarse \
+            --task {task} \
             --outdir {output_dir}
             """
         )
@@ -221,10 +221,3 @@ def evaluate_hipe(dataset: 'transformers_baseline.data_preparation.HipeDataset',
                        method='hipe',
                        hipe_script_path=hipe_script_path,
                        )
-#
-#
-# #%%
-# preds = [['B-A', 'B-B'],['B-A', 'B-B']]
-# gt = [['B-A', 'B-B'],['B-A', 'B-B']]
-#
-# result = seqeval_evaluation(preds, gt)

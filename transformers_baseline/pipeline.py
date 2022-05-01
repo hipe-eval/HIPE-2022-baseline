@@ -95,50 +95,61 @@ def train(config: 'argparse.Namespace',
                 if config.do_debug:
                     break
 
-
-
         # ============================ Evaluate and append during training ============================
-        epoch_results = evaluate_dataset(eval_dataset, model, config.batch_size, config.device,
-                                                       config.ids_to_labels, config.do_debug)
-        epoch_results = seqeval_to_df(epoch_results)
+        if config.evaluate_during_training:
+            epoch_results = evaluate_dataset(eval_dataset, model, config.batch_size, config.device,
+                                             config.ids_to_labels, config.do_debug)
+            epoch_results = seqeval_to_df(epoch_results)
 
-        epoch_data = pd.DataFrame({("TRAINING", "EP"): [epoch_num + 1],
-                                   ("TRAINING", "TIME"): [time.time() - epoch_time],
-                                   ("TRAINING", "LOSS"): [np.mean(loss_batches_list)]})
-        epoch_results = pd.concat([epoch_data, epoch_results], axis=1)
-        train_results = pd.concat([train_results, epoch_results], axis=0, ignore_index=True)
+            epoch_data = pd.DataFrame({("TRAINING", "EP"): [epoch_num + 1],
+                                       ("TRAINING", "TIME"): [time.time() - epoch_time],
+                                       ("TRAINING", "LOSS"): [np.mean(loss_batches_list)]})
+            epoch_results = pd.concat([epoch_data, epoch_results], axis=1)
+            train_results = pd.concat([train_results, epoch_results], axis=0, ignore_index=True)
 
-        # ========================= Save best model and write its results ===============================
-        if round(epoch_results[('ALL', 'F1')][0], 4) > round(best_f1, 4):
+            # ========================= Save best model and write its results ===============================
+            if round(epoch_results[('ALL', 'F1')][0], 4) > round(best_f1, 4):
 
-            count_no_improvement = 0
-            best_f1 = epoch_results[('ALL', 'F1')][0]
+                count_no_improvement = 0
+                best_f1 = epoch_results[('ALL', 'F1')][0]
 
-            best_model_dir = os.path.join(config.output_dir, "best_model")
-            model.save_pretrained(best_model_dir)
-            tokenizer.save_pretrained(best_model_dir)
-            torch.save(config, os.path.join(best_model_dir, "training_args.bin"))
-            epoch_results.to_csv(os.path.join(config.output_dir, "results/seqeval/best_results.tsv"), sep='\t',
-                                 index=False)
 
+                model.save_pretrained(config.model_save_dir)
+                tokenizer.save_pretrained(config.model_save_dir)
+                torch.save(config, os.path.join(config.model_save_dir, "training_args.bin"))
+                epoch_results.to_csv(os.path.join(config.output_dir, "results/seqeval/best_results.tsv"), sep='\t',
+                                     index=False)
+
+            else:
+                count_no_improvement += 1
+
+            if count_no_improvement == config.early_stopping_patience and config.do_early_stopping:
+                break
         else:
-            count_no_improvement += 1
+            if
 
-        if (count_no_improvement == config.early_stopping_patience and config.do_early_stopping) or config.do_debug:
+        if config.do_debug:
             break
-
-    train_results.to_csv(os.path.join(config.output_dir, "results/seqeval/train_results.tsv"), sep='\t', index=False)
+    if config.evaluate_during_training:
+        train_results.to_csv(os.path.join(config.output_dir, "results/seqeval/train_results.tsv"), sep='\t', index=False)
+    else:
 
 
 def main(config):
+    logger.info(f'Runing pipeline on {config.output_dir.split("/")[-1]}')
+
     # Create directories
+    config.model_save_dir = os.path.join(config.output_dir, "model")
+    config.seqeval_output_dir = os.path.join(config.output_dir, 'results/seqeval')
+    config.hipe_output_dir = os.path.join(config.output_dir, 'results/hipe_eval')
+
     os.makedirs(config.output_dir, exist_ok=config.overwrite_output_dir)
-    os.makedirs(os.path.join(config.output_dir, "best_model"), exist_ok=config.overwrite_output_dir)
-    os.makedirs(os.path.join(config.output_dir, "results/seqeval"), exist_ok=config.overwrite_output_dir)
-    os.makedirs(os.path.join(config.output_dir, "results/hipe_eval"), exist_ok=config.overwrite_output_dir)
+    os.makedirs(config.model_save_dir, exist_ok=config.overwrite_output_dir)
+    os.makedirs(config.seqeval_output_dir, exist_ok=config.overwrite_output_dir)
+    os.makedirs(config.hipe_output_dir, exist_ok=config.overwrite_output_dir)
 
     # Save config
-    with open(os.path.join(config.output_dir, "config.json"), "w") as f:
+    with open(os.path.join(config.output_dir, 'config.json'), 'w') as f:
         json.dump(config.__dict__, f, skipkeys=True, indent=4, sort_keys=True,
                   default=lambda o: '<not serializable>')
 
@@ -175,7 +186,7 @@ if __name__ == '__main__':
     )
     main(config)
 
-#%%
+# %%
 # from hipe_commons.helpers.tsv import get_tsv_data
 # logger = get_custom_logger(__name__, )
 # config = initialize_config(json_path='/scratch/sven/tmp/HIPE-2022-baseline/transformers_baseline/data/ajmc_de_coarse.json')
@@ -188,5 +199,3 @@ if __name__ == '__main__':
 # model = transformers.AutoModelForTokenClassification.from_pretrained(config.model_name_or_path,
 #                                                                      num_labels=config.num_labels)
 # model.to(config.device)
-
-
