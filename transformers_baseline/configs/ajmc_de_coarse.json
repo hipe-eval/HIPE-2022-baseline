@@ -6,9 +6,13 @@
   "labels_column": "NE-COARSE-LIT",
   "model_name_or_path": "xlm-roberta-base",
   "do_train": true,
-  "do_hipe_eval": true,
-  "do_debug": false,
   "overwrite_output_dir": true,
-  "device_name": "cuda",
-  "epochs": 10
+  "do_predict": true,
+  "evaluate_during_training": true,
+  "device_name": "cuda:1",
+  "epochs": 10,
+  "predict_urls": [
+    "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/ajmc/de/HIPE-2022-v2.1-ajmc-dev-de.tsv",
+    "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/ajmc/de/HIPE-2022-v2.1-ajmc-test-allmasked-de.tsv"
+  ]
 }

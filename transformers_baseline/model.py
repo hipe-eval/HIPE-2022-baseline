@@ -7,8 +7,10 @@ from torch.utils.data import DataLoader
 from torch.utils.data import DataLoader, SequentialSampler
 
 from transformers_baseline.data_preparation import create_prediction_dataset
-from transformers_baseline.evaluation import write_predictions_to_tsv
+from transformers_baseline.utils import write_predictions_to_tsv, get_custom_logger
 
+
+logger = get_custom_logger(__name__)
 
 def predict(inputs: Dict[str, torch.tensor], model: 'transformers.models', device: torch.device):
     """Predicts for a batch or a single example.
@@ -58,7 +60,7 @@ def predict_dataset(dataset: 'HipeDataset',
 
     dataloader = DataLoader(dataset, sampler=SequentialSampler(dataset), batch_size=batch_size)
 
-    return predict_batches(dataloader, model, device=device, do_debug=do_debug).tolist()
+    return predict_batches(dataloader, model, device=device, do_debug=do_debug)
 
 
 # Todo add this code in ajmc
@@ -66,6 +68,7 @@ def predict_and_write_tsv(model, device, output_dir, tokenizer, ids_to_labels, l
                           path: Optional[str] = None, url: Optional[str] = None):
     """Creates a dataset from a tsv, predicts and writes predictions to tsv."""
 
+    logger.info(f"""Starting prediction on {path.split('/')[-1] if path else url.split('/')[-1]}""")
     dataset_to_pred = create_prediction_dataset(tokenizer=tokenizer, path=path, url=url)
     predictions = predict_dataset(dataset_to_pred, model, device)
 

@@ -5,9 +5,14 @@
   "labels_column": "NE-COARSE-LIT",
   "epochs": 10,
   "hipe_script_path": "/scratch/sven/packages/HIPE-scorer/clef_evaluation.py",
-  "model_name_or_path": "xlm-roberta-base",
-  "do_train": true,
-  "do_hipe_eval": true,
+  "model_name_or_path": "/scratch/sven/hipe_baseline/newseye_fr_coarse/model",
+  "do_train": false,
   "overwrite_output_dir": true,
-  "device_name": "cuda"
+  "do_predict": true,
+  "device_name": "cuda:1",
+  "predict_urls": [
+    "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/newseye/fr/HIPE-2022-v2.1-newseye-dev2-fr.tsv",
+    "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/newseye/fr/HIPE-2022-v2.1-newseye-test_allmasked-fr.tsv"
+  ],
+  "evaluate_during_training": true
 }

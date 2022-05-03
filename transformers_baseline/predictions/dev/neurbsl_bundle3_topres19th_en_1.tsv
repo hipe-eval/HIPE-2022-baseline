@@ -63,7 +63,7 @@ RIGA	O	_	_	_	_	_	Q1773	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 DANTZIC	O	_	_	_	_	_	Q1792	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-SWARTWICK	B-LOC	_	_	_	_	_	NIL	_	
+SWARTWICK	O	_	_	_	_	_	NIL	_	
 RED	O	_	_	_	_	_	_	_	
 PINE	O	_	_	_	_	_	_	_	
 AND	O	_	_	_	_	_	_	_	
@@ -255,7 +255,7 @@ Metropolis	O	_	_	_	_	_	_	_	NoSpaceAfter
 # topres19th:publication_title = Dorset County Chronicle, etc.
 # topres19th:place_publication = Dorchester
 WEYMOUTH	B-LOC	_	_	_	_	_	Q661619	_	
-REGATTA	O	_	_	_	_	_	_	_	NoSpaceAfter
+REGATTA	I-LOC	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 FRIDAYVUt	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
@@ -270,10 +270,10 @@ August	O	_	_	_	_	_	_	_	NoSpaceAfter
 JOSEPH	O	_	_	_	_	_	_	_	
 WELD	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-Egg	O	_	_	_	_	_	_	_	NoSpaceAfter
+Egg	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-STEWARD	O	_	_	_	_	_	_	_	NoSpaceAfter
+STEWARD	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 FIRST	O	_	_	_	_	_	_	_	
 DAY	O	_	_	_	_	_	_	_	NoSpaceAfter
@@ -403,9 +403,9 @@ Hire	O	_	_	_	_	_	_	_	NoSpaceAfter
 belonging	O	_	_	_	_	_	_	_	
 to	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-Port	B-LOC	_	_	_	_	_	Q28195234	_	
-of	I-LOC	_	_	_	_	_	Q28195234	_	
-Weymouth	I-LOC	_	_	_	_	_	Q28195234	_	NoSpaceAfter
+Port	O	_	_	_	_	_	Q28195234	_	
+of	O	_	_	_	_	_	Q28195234	_	
+Weymouth	B-LOC	_	_	_	_	_	Q28195234	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 not	O	_	_	_	_	_	_	_	
 exceeding	O	_	_	_	_	_	_	_	
@@ -2107,7 +2107,7 @@ of	O	_	_	_	_	_	_	_
 St	B-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 .	I-BUILDING	_	_	_	_	_	_	_	EndOfSentence
 John	B-BUILDING	_	_	_	_	_	_	_	
-Coventry	I-LOC	_	_	_	_	_	_	_	NoSpaceAfter
+Coventry	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Esq	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
@@ -2932,7 +2932,7 @@ the	O	_	_	_	_	_	_	_
 Great	B-BUILDING	_	_	_	_	_	_	_	
 Western	I-BUILDING	_	_	_	_	_	_	_	
 Railway	I-BUILDING	_	_	_	_	_	_	_	
-Company	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
+Company	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 Prisoner	O	_	_	_	_	_	_	_	
 was	O	_	_	_	_	_	_	_	
@@ -3293,8 +3293,8 @@ the	O	_	_	_	_	_	_	_
 head-quarters	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-Royal	O	_	_	_	_	_	_	_	
-Engineers	O	_	_	_	_	_	_	_	NoSpaceAfter
+Royal	B-BUILDING	_	_	_	_	_	_	_	
+Engineers	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 decorated	O	_	_	_	_	_	_	_	
 as	O	_	_	_	_	_	_	_	
@@ -3526,7 +3526,7 @@ that	O	_	_	_	_	_	_	_
 establishment	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 LOBE	O	_	_	_	_	_	_	_	
-INSURANCE	O	_	_	_	_	_	_	_	NoSpaceAfter
+INSURANCE	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Pall	B-BUILDING	_	_	_	_	_	Q925349	_	
 Mall	I-BUILDING	_	_	_	_	_	Q925349	_	
@@ -4046,7 +4046,7 @@ adjudged	O	_	_	_	_	_	_	_
 Bankrupt	O	_	_	_	_	_	_	_	
 in	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-COUNTY	O	_	_	_	_	_	_	_	
+COUNTY	B-BUILDING	_	_	_	_	_	_	_	
 COURT	I-BUILDING	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
 DORSETSIIIRR	B-LOC	_	_	_	_	_	Q23159	_	NoSpaceAfter
@@ -4082,8 +4082,8 @@ of	O	_	_	_	_	_	_	_
 the	O	_	_	_	_	_	_	_	
 County	B-BUILDING	_	_	_	_	_	_	_	
 Court	I-BUILDING	_	_	_	_	_	_	_	
-of	O	_	_	_	_	_	_	_	
-Dorsetshire	B-LOC	_	_	_	_	_	Q23159	_	NoSpaceAfter
+of	I-BUILDING	_	_	_	_	_	_	_	
+Dorsetshire	I-LOC	_	_	_	_	_	Q23159	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 holden	O	_	_	_	_	_	_	_	
 at	O	_	_	_	_	_	_	_	
@@ -4124,8 +4124,8 @@ OFFICE	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 WISIDORNE	B-LOC	_	_	_	_	_	Q535233	_	
 MINSTEIL	I-LOC	_	_	_	_	_	Q535233	_	
-HENRY	B-LOC	_	_	_	_	_	_	_	
-MOORE	I-LOC	_	_	_	_	_	_	_	NoSpaceAfter
+HENRY	O	_	_	_	_	_	_	_	
+MOORE	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 is	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
@@ -5228,7 +5228,7 @@ Hon	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 Wm	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
-Coventry	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
+Coventry	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 Among	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
@@ -6060,8 +6060,8 @@ held	O	_	_	_	_	_	_	_
 yesterday	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 in	O	_	_	_	_	_	_	_	
-Christs	O	_	_	_	_	_	NIL	_	
-Church	O	_	_	_	_	_	NIL	_	NoSpaceAfter
+Christs	B-BUILDING	_	_	_	_	_	NIL	_	
+Church	I-BUILDING	_	_	_	_	_	NIL	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 (	O	_	_	_	_	_	_	_	NoSpaceAfter
 Belfast	B-LOC	_	_	_	_	_	Q10686	_	NoSpaceAfter
@@ -6406,8 +6406,8 @@ at	O	_	_	_	_	_	_	_
 a	O	_	_	_	_	_	_	_	
 place	O	_	_	_	_	_	_	_	
 called	O	_	_	_	_	_	_	_	
-Cwin	O	_	_	_	_	_	Q5197221	_	
-Amman	O	_	_	_	_	_	Q5197221	_	NoSpaceAfter
+Cwin	B-LOC	_	_	_	_	_	Q5197221	_	
+Amman	I-LOC	_	_	_	_	_	Q5197221	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 at	O	_	_	_	_	_	_	_	
 ins	O	_	_	_	_	_	_	_	
@@ -6469,7 +6469,7 @@ CREDITORS	O	_	_	_	_	_	_	_	NoSpaceAfter
 At	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
 Manchester	B-LOC	_	_	_	_	_	NIL	_	
-Bankruptcy	O	_	_	_	_	_	NIL	_	
+Bankruptcy	B-BUILDING	_	_	_	_	_	NIL	_	
 Court	I-BUILDING	_	_	_	_	_	NIL	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Athenaeum	B-BUILDING	_	_	_	_	_	Q6747276	_	NoSpaceAfter
@@ -6503,7 +6503,7 @@ seedsman	O	_	_	_	_	_	_	_
 and	O	_	_	_	_	_	_	_	
 grocer	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-Altrincaam	B-STREET	_	_	_	_	_	Q445058	_	NoSpaceAfter
+Altrincaam	B-LOC	_	_	_	_	_	Q445058	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 opposed	O	_	_	_	_	_	_	_	
 discharge	O	_	_	_	_	_	_	_	
@@ -6704,21 +6704,21 @@ of	O	_	_	_	_	_	_	_
 business	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 Cheetham	B-LOC	_	_	_	_	_	Q2015708	_	
-Hill	O	_	_	_	_	_	Q2015708	_	NoSpaceAfter
+Hill	I-LOC	_	_	_	_	_	Q2015708	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 first	O	_	_	_	_	_	_	_	
 meeting	O	_	_	_	_	_	_	_	
 .	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	
 11	O	_	_	_	_	_	_	_	
-Leake	B-LOC	_	_	_	_	_	_	_	
+Leake	O	_	_	_	_	_	_	_	
 A	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 H	O	_	_	_	_	_	_	_	
 ,	O	_	_	_	_	_	_	_	
 ironfounder	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-Hollinwood	O	_	_	_	_	_	Q4499107	_	NoSpaceAfter
+Hollinwood	B-LOC	_	_	_	_	_	Q4499107	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 last	O	_	_	_	_	_	_	_	
 exam	O	_	_	_	_	_	_	_	NoSpaceAfter
@@ -6809,7 +6809,7 @@ joiner	O	_	_	_	_	_	_	_
 and	O	_	_	_	_	_	_	_	
 builder	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
-Barrow-in-Furness	O	_	_	_	_	_	Q671892	_	NoSpaceAfter
+Barrow-in-Furness	B-LOC	_	_	_	_	_	Q671892	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 dividend	O	_	_	_	_	_	_	_	
 12	O	_	_	_	_	_	_	_	
@@ -7385,9 +7385,9 @@ Parker	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 on	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-4th	O	_	_	_	_	_	_	_	
+4th	B-STREET	_	_	_	_	_	_	_	
 of	I-STREET	_	_	_	_	_	_	_	
-Way	B-STREET	_	_	_	_	_	_	_	NoSpaceAfter
+Way	I-STREET	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 and	O	_	_	_	_	_	_	_	
 for	O	_	_	_	_	_	_	_	
@@ -7543,7 +7543,7 @@ and	O	_	_	_	_	_	_	_
 Mr	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 R	O	_	_	_	_	_	_	_	NoSpaceAfter
-.	I-STREET	_	_	_	_	_	_	_	EndOfSentence
+.	O	_	_	_	_	_	_	_	EndOfSentence
 Lane	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 both	O	_	_	_	_	_	_	_	
@@ -7765,7 +7765,7 @@ The	O	_	_	_	_	_	_	_
 elections	O	_	_	_	_	_	_	_	
 to	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-National	O	_	_	_	_	_	_	_	
+National	B-BUILDING	_	_	_	_	_	_	_	
 Assembly	O	_	_	_	_	_	_	_	
 will	O	_	_	_	_	_	_	_	
 commence	O	_	_	_	_	_	_	_	
@@ -8458,7 +8458,7 @@ held	O	_	_	_	_	_	_	_
 in	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
 Wesleyan	B-BUILDING	_	_	_	_	_	_	_	
-Sunday	O	_	_	_	_	_	_	_	
+Sunday	I-BUILDING	_	_	_	_	_	_	_	
 School	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 in	O	_	_	_	_	_	_	_	
@@ -8606,9 +8606,9 @@ nj	O	_	_	_	_	_	_	_	NoSpaceAfter
 >	O	_	_	_	_	_	_	_	NoSpaceAfter
 on	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-I	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
+I	O	_	_	_	_	_	_	_	NoSpaceAfter
 ’	I-LOC	_	_	_	_	_	_	_	NoSpaceAfter
-evais	I-LOC	_	_	_	_	_	_	_	
+evais	O	_	_	_	_	_	_	_	
 Loan	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 The	O	_	_	_	_	_	_	_	
@@ -9079,8 +9079,8 @@ G	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 Smith	O	_	_	_	_	_	_	_	
 S	O	_	_	_	_	_	_	_	
-Burton	O	_	_	_	_	_	_	_	
-Cres	O	_	_	_	_	_	_	_	NoSpaceAfter
+Burton	B-BUILDING	_	_	_	_	_	_	_	
+Cres	I-BUILDING	_	_	_	_	_	_	_	NoSpaceAfter
 -	O	_	_	_	_	_	_	_	NoSpaceAfter
 47	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
@@ -9142,7 +9142,7 @@ Rusholme-road	B-STREET	_	_	_	_	_	NIL	_
 (	O	_	_	_	_	_	_	_	NoSpaceAfter
 near	O	_	_	_	_	_	_	_	
 All	B-STREET	_	_	_	_	_	NIL	_	
-Saints	I-STREET	_	_	_	_	_	NIL	_	NoSpaceAfter
+Saints	I-BUILDING	_	_	_	_	_	NIL	_	NoSpaceAfter
 )	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Manchester	B-LOC	_	_	_	_	_	Q18125	_	NoSpaceAfter
@@ -10403,7 +10403,7 @@ letter	O	_	_	_	_	_	_	_
 from	O	_	_	_	_	_	_	_	
 Rear-Admiral	O	_	_	_	_	_	_	_	
 tbe	O	_	_	_	_	_	_	_	
-Hontotirabte	B-LOC	_	_	_	_	_	_	_	
+Hontotirabte	O	_	_	_	_	_	_	_	
 Sir	O	_	_	_	_	_	_	_	
 Alexander	O	_	_	_	_	_	_	_	
 Cochrane	O	_	_	_	_	_	_	_	NoSpaceAfter
@@ -10426,7 +10426,7 @@ the	O	_	_	_	_	_	_	_
 Lecivaid	B-LOC	_	_	_	_	_	Q29971	_	
 Is	I-LOC	_	_	_	_	_	Q29971	_	
 I	I-LOC	_	_	_	_	_	Q29971	_	
-lands	O	_	_	_	_	_	Q29971	_	NoSpaceAfter
+lands	I-LOC	_	_	_	_	_	Q29971	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 to	O	_	_	_	_	_	_	_	
 tbe	O	_	_	_	_	_	_	_	
@@ -10505,7 +10505,7 @@ Sloop	O	_	_	_	_	_	_	_
 Nimrod	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Carlisle	B-LOC	_	_	_	_	_	Q2879612	_	
-Bay	I-LOC	_	_	_	_	_	Q2879612	_	
+Bay	O	_	_	_	_	_	Q2879612	_	
 SIR	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Barbadoes	B-LOC	_	_	_	_	_	Q244	_	NoSpaceAfter
@@ -11316,7 +11316,7 @@ Laid	O	_	_	_	_	_	_	_
 Forces	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 St	B-LOC	_	_	_	_	_	Q124234	_	NoSpaceAfter
-,	I-STREET	_	_	_	_	_	Q124234	_	
+,	I-LOC	_	_	_	_	_	Q124234	_	
 Jamess	B-STREET	_	_	_	_	_	Q124234	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 April	O	_	_	_	_	_	_	_	
@@ -11472,7 +11472,7 @@ Job	O	_	_	_	_	_	_	_	NoSpaceAfter
 Scott	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
-Ntjran	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
+Ntjran	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 or	O	_	_	_	_	_	_	_	
 MefT	O	_	_	_	_	_	_	_	NoSpaceAfter
@@ -11482,7 +11482,7 @@ and	O	_	_	_	_	_	_	_
 Crtajy	O	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
-Lawrence-laue	B-LOC	_	_	_	_	_	Q48698883	_	NoSpaceAfter
+Lawrence-laue	B-STREET	_	_	_	_	_	Q48698883	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 London	B-LOC	_	_	_	_	_	Q84	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
@@ -11611,7 +11611,7 @@ Cernbrok	B-LOC	_	_	_	_	_	NIL	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 in	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-Towntbip	B-LOC	_	_	_	_	_	_	_	
+Towntbip	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
 Stratford	B-LOC	_	_	_	_	_	Q374458	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
@@ -11674,7 +11674,7 @@ ten	O	_	_	_	_	_	_	_	NoSpaceAfter
 ’	O	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	NoSpaceAfter
 i	O	_	_	_	_	_	_	_	
-Paace	O	_	_	_	_	_	_	_	NoSpaceAfter
+Paace	B-LOC	_	_	_	_	_	_	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 Jim	O	_	_	_	_	_	_	_	
 6	O	_	_	_	_	_	_	_	NoSpaceAfter
@@ -11857,9 +11857,9 @@ of	O	_	_	_	_	_	_	_
 the	O	_	_	_	_	_	_	_	
 Duchy	B-LOC	_	_	_	_	_	_	_	
 and	O	_	_	_	_	_	_	_	
-County	O	_	_	_	_	_	_	_	
+County	B-LOC	_	_	_	_	_	_	_	
 Palatine	I-LOC	_	_	_	_	_	_	_	
-of	O	_	_	_	_	_	_	_	
+of	I-LOC	_	_	_	_	_	_	_	
 Lancafter	I-LOC	_	_	_	_	_	_	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	
 to	O	_	_	_	_	_	_	_	
@@ -12081,7 +12081,7 @@ fupretnacy	O	_	_	_	_	_	_	_	NoSpaceAfter
 THE	O	_	_	_	_	_	_	_	
 SURRENDER	O	_	_	_	_	_	_	_	
 OF	O	_	_	_	_	_	_	_	
-PEKIN	O	_	_	_	_	_	Q956	_	NoSpaceAfter
+PEKIN	B-LOC	_	_	_	_	_	Q956	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 THE	O	_	_	_	_	_	_	_	
 WAR	O	_	_	_	_	_	_	_	
@@ -12137,7 +12137,7 @@ the	O	_	_	_	_	_	_	_
 walls	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-Imperial	O	_	_	_	_	_	Q956	_	
+Imperial	B-LOC	_	_	_	_	_	Q956	_	
 capital	O	_	_	_	_	_	Q956	_	NoSpaceAfter
 .	O	_	_	_	_	_	_	_	EndOfSentence
 The	O	_	_	_	_	_	_	_	
@@ -12158,7 +12158,7 @@ events	O	_	_	_	_	_	_	_	NoSpaceAfter
 extracted	O	_	_	_	_	_	_	_	
 from	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-I	O	_	_	_	_	_	_	_	
+I	B-LOC	_	_	_	_	_	_	_	
 hind	I-LOC	_	_	_	_	_	_	_	
 Mail	O	_	_	_	_	_	_	_	
 and	O	_	_	_	_	_	_	_	
@@ -12182,7 +12182,7 @@ rear	O	_	_	_	_	_	_	_
 Frotu	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
 China	B-BUILDING	_	_	_	_	_	Q148	_	
-Mall.l	I-BUILDING	_	_	_	_	_	_	_	
+Mall.l	O	_	_	_	_	_	_	_	
 The	O	_	_	_	_	_	_	_	
 intelligence	O	_	_	_	_	_	_	_	
 from	O	_	_	_	_	_	_	_	
@@ -12230,7 +12230,7 @@ Chinese	O	_	_	_	_	_	_	_	NoSpaceAfter
 The	O	_	_	_	_	_	_	_	
 army	O	_	_	_	_	_	_	_	
 of	O	_	_	_	_	_	_	_	
-Sau-koalinsin	B-LOC	_	_	_	_	_	_	_	
+Sau-koalinsin	O	_	_	_	_	_	_	_	
 is	O	_	_	_	_	_	_	_	
 still	O	_	_	_	_	_	_	_	
 in	O	_	_	_	_	_	_	_	
@@ -12390,7 +12390,7 @@ our	O	_	_	_	_	_	_	_
 troops	O	_	_	_	_	_	_	_	
 and	O	_	_	_	_	_	_	_	
 the	O	_	_	_	_	_	_	_	
-Yuengmin-yuen	B-LOC	_	_	_	_	_	Q4132	_	NoSpaceAfter
+Yuengmin-yuen	O	_	_	_	_	_	Q4132	_	NoSpaceAfter
 ,	O	_	_	_	_	_	_	_	
 or	O	_	_	_	_	_	_	_	
 summer	O	_	_	_	_	_	_	_	

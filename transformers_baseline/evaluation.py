@@ -1,5 +1,5 @@
 import os
-from typing import List, Union, Dict
+from typing import List, Dict
 import datasets
 import numpy as np
 import pandas as pd
@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader, SequentialSampler
 
 import transformers_baseline.data_preparation
 from transformers_baseline.model import predict, predict_batches
-from transformers_baseline.utils import get_custom_logger
+from transformers_baseline.utils import get_custom_logger, write_predictions_to_tsv
 
 logger = get_custom_logger(__name__)
 
@@ -64,32 +64,6 @@ def evaluate_dataset(dataset: transformers_baseline.data_preparation.HipeDataset
     ]
 
     return seqeval_evaluation(predictions, groundtruth)
-
-
-def write_predictions_to_tsv(words: List[List[Union[str, None]]],
-                             labels: List[List[Union[str, None]]],
-                             tsv_line_numbers: List[List[Union[int, None]]],
-                             output_file: str,
-                             labels_column: str,
-                             tsv_path: str = None,
-                             tsv_url: str = None, ):
-    """Get the source tsv, replaces its labels with predicted labels and write a new file to `output`.
-
-    `words`, `labels` and `tsv_line_numbers` should be three alined list, so as in HipeDataset.
-    """
-
-    logger.info(f'Writing predictions to {output_file}')
-
-    tsv_lines = [l.split('\t') for l in get_tsv_data(tsv_path, tsv_url).split('\n')]
-    label_col_number = tsv_lines[0].index(labels_column)
-    for i in range(len(words)):
-        for j in range(len(words[i])):
-            if words[i][j]:
-                assert tsv_lines[tsv_line_numbers[i][j]][0] == words[i][j]
-                tsv_lines[tsv_line_numbers[i][j]][label_col_number] = labels[i][j]
-
-    with open(output_file, 'w') as f:
-        f.write('\n'.join(['\t'.join(l) for l in tsv_lines]))
 
 
 def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, method: str,
@@ -198,7 +172,7 @@ def evaluate_hipe(dataset: 'transformers_baseline.data_preparation.HipeDataset',
         logger.info(f'Downloading a local copy from {groundtruth_tsv_url}')
         groundtruth_tsv_path = os.path.join(output_dir, 'groundtruth.tsv')
         groundtruth_tsv_data = get_tsv_data(url=groundtruth_tsv_url)
-        with open(groundtruth_tsv_path, 'w') as f:
+        with open(groundtruth_tsv_path, 'w', encoding='utf-8') as f:
             f.write(groundtruth_tsv_data)
 
     # Todo : this could be harmonized with model.predict_and_write

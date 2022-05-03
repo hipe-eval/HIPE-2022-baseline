@@ -7,9 +7,9 @@ class HipeDataset(torch.utils.data.Dataset):
 
     def __init__(self,
                  batch_encoding: "BatchEncoding",
-                 labels: List[List[int]],
                  tsv_line_numbers: List[List[int]],
-                 words: List[List[str]]):
+                 words: List[List[str]],
+                 labels: Optional[List[List[int]]] = None):
         self.batch_encoding = batch_encoding
         self.labels = labels
         self.tsv_line_numbers = tsv_line_numbers
@@ -18,11 +18,12 @@ class HipeDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         item = {k: torch.tensor(v[idx]) for k, v in self.batch_encoding.items() if k != 'overflow_to_sample_mapping'}
-        item['labels'] = torch.tensor(self.labels[idx])
+        if self.labels is not None:
+            item['labels'] = torch.tensor(self.labels[idx])
         return item
 
     def __len__(self):
-        return len(self.labels)
+        return len(self.tsv_line_numbers)
 
 
 def recursive_iterator(iterable: Iterable, iterable_types: Tuple[Iterable] = (list, tuple)) -> Generator:
@@ -133,10 +134,10 @@ def prepare_datasets(config: 'argparse.Namespace', tokenizer):
 
     datasets = {}
     for split in data.keys():
-        datasets[split] = HipeDataset(data[split]['batchencoding'],
-                                      data[split]['labels'],
-                                      data[split]["tsv_line_numbers"],
-                                      data[split]['words'])
+        datasets[split] = HipeDataset(batch_encoding=data[split]['batchencoding'],
+                                      tsv_line_numbers=data[split]["tsv_line_numbers"],
+                                      words=data[split]['words'],
+                                      labels=data[split]['labels'],)
 
     return datasets
 
@@ -156,7 +157,13 @@ def create_prediction_dataset(tokenizer, path: Optional[str] = None, url: Option
     data['tsv_line_numbers'] = [align_elements(e.word_ids, data['n']) for e in
                                 data['batchencoding'].encodings]
 
+    data['labels'] = [[0 for _ in x] for x in data['tsv_line_numbers']]  # dummy labels without which I get an untracable error from HF
+
     return HipeDataset(batch_encoding=data['batchencoding'],
-                       labels=data["tsv_line_numbers"],  # Dummy column
                        tsv_line_numbers=data["tsv_line_numbers"],
-                       words=data['words'])
+                       words=data['words'],
+                       labels = data['labels'])
+
+
+import datasets
+

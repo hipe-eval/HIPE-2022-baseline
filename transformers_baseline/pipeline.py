@@ -5,6 +5,7 @@ It runs on a single GPU."""
 import json
 import logging
 import time
+from typing import Optional
 
 import pandas as pd
 import os
@@ -22,7 +23,7 @@ from transformers_baseline.utils import set_seed, get_custom_logger
 def train(config: 'argparse.Namespace',
           model: transformers.PreTrainedModel,
           train_dataset: 'transformers_baseline.data_preparation.HipeDataset',
-          eval_dataset: 'transformers_baseline.data_preparation.HipeDataset',
+          eval_dataset: Optional['transformers_baseline.data_preparation.HipeDataset'],
           tokenizer: transformers.PreTrainedTokenizer):
     """
     Main function of the the script :
@@ -141,14 +142,18 @@ def main(config):
     logger.info(f'Runing pipeline on {config.output_dir.split("/")[-1]}')
 
     # Create directories
-    config.model_save_dir = os.path.join(config.output_dir, "model")
-    config.predictions_dir = os.path.join(config.output_dir, "predictions")
-    config.seqeval_output_dir = os.path.join(config.output_dir, 'results/seqeval')
-    config.hipe_output_dir = os.path.join(config.output_dir, 'results/hipe_eval')
-
     os.makedirs(config.output_dir, exist_ok=config.overwrite_output_dir)
+
+    config.model_save_dir = os.path.join(config.output_dir, "model")
     os.makedirs(config.model_save_dir, exist_ok=config.overwrite_output_dir)
+
+    config.predictions_dir = os.path.join(config.output_dir, "predictions")
+    os.makedirs(config.predictions_dir, exist_ok=config.overwrite_output_dir)
+
+    config.seqeval_output_dir = os.path.join(config.output_dir, 'results/seqeval')
     os.makedirs(config.seqeval_output_dir, exist_ok=config.overwrite_output_dir)
+
+    config.hipe_output_dir = os.path.join(config.output_dir, 'results/hipe_eval')
     os.makedirs(config.hipe_output_dir, exist_ok=config.overwrite_output_dir)
 
     # Save config
@@ -163,11 +168,16 @@ def main(config):
     datasets = prepare_datasets(config, tokenizer)
 
     model = transformers.AutoModelForTokenClassification.from_pretrained(config.model_name_or_path,
-                                                                         num_labels=config.num_labels)
+                                                                    num_labels=config.num_labels
+                                                                         )
     model.to(config.device)
 
     if config.do_train:
-        train(config, model, datasets['train'], datasets['eval'], tokenizer)
+        train(config=config,
+              model=model,
+              train_dataset=datasets['train'],
+              eval_dataset=datasets['eval'] if config.evaluate_during_training else None,
+              tokenizer=tokenizer)
 
     if config.do_hipe_eval:
         evaluate_hipe(dataset=datasets['eval'],
@@ -182,11 +192,12 @@ def main(config):
                       )
 
     if config.do_predict:
-        for url in config.prediction_urls:
+        for url in config.predict_urls:
             predict_and_write_tsv(model=model, device=config.device, output_dir=config.predictions_dir,
                                   tokenizer=tokenizer, ids_to_labels=config.ids_to_labels,
                                   labels_column=config.labels_column, url=url)
-        for path in config.prediction_paths:
+
+        for path in config.predict_paths:
             predict_and_write_tsv(model=model, device=config.device, output_dir=config.predictions_dir,
                                   tokenizer=tokenizer, ids_to_labels=config.ids_to_labels,
                                   labels_column=config.labels_column, url=path)
@@ -197,20 +208,6 @@ def main(config):
 if __name__ == '__main__':
     logger = get_custom_logger(__name__, level=logging.DEBUG)
     config = initialize_config(
-        json_path='configs/ajmc_de_coarse.json'
+        # json_path='configs/newseye_de_coarse.json'
     )
     main(config)
-
-# %%
-# from hipe_commons.helpers.tsv import get_tsv_data
-# logger = get_custom_logger(__name__, )
-# config = initialize_config(json_path='/scratch/sven/tmp/HIPE-2022-baseline/transformers_baseline/data/ajmc_de_coarse.json')
-# tokenizer = transformers.AutoTokenizer.from_pretrained(config.model_name_or_path)
-#
-# data = get_tsv_data(url=config.train_url)
-# len(data.split('\n'))
-# datasets = prepare_datasets(config, tokenizer)
-#
-# model = transformers.AutoModelForTokenClassification.from_pretrained(config.model_name_or_path,
-#                                                                      num_labels=config.num_labels)
-# model.to(config.device)

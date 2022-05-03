@@ -60,14 +60,14 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         type=list,
                         nargs="+",
                         required=False,
-                        default=None,
+                        default=[],
                         help="A list of tsv files to predict")
 
     parser.add_argument("--predict_urls",
                         type=list,
                         nargs="+",
                         required=False,
-                        default=None,
+                        default=[],
                         help="A list of tsv files-urls to predict")
 
     # ================ DATA RELATED ====================================================================================
@@ -94,9 +94,14 @@ def create_pipeline_parser() -> argparse.ArgumentParser:
                         default=False,
                         help="Performs CLEF-HIPE evaluation, alone or at the end of training if `do_train`.")
 
+    parser.add_argument("--do_predict",
+                        action="store_true",
+                        default=False,
+                        help="Predicts on `predict_urls` or/and `predict_paths`")
+
     parser.add_argument("--evaluate_during_training",
                         action="store_true",
-                        default=True,
+                        default=False,
                         help="Whether to evaluate during training.")
 
     parser.add_argument("--do_debug",

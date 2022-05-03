@@ -1,0 +1,16 @@
+{
+  "train_url": "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/hipe2020/en/HIPE-2022-v2.1-hipe2020-dev-en.tsv",
+  "output_dir": "/scratch/sven/hipe_baseline/hipe2020_en_coarse",
+  "labels_column": "NE-COARSE-LIT",
+  "epochs": 10,
+  "hipe_script_path": "/scratch/sven/packages/HIPE-scorer/clef_evaluation.py",
+  "model_name_or_path": "xlm-roberta-base",
+  "evaluate_during_training": false,
+  "do_train": true,
+  "overwrite_output_dir": true,
+  "do_predict": true,
+  "device_name": "cuda:1",
+  "predict_urls": [
+    "https://raw.githubusercontent.com/hipe-eval/HIPE-2022-data/main/data/v2.1/hipe2020/en/HIPE-2022-v2.1-hipe2020-test_allmasked-en.tsv"
+  ]
+}
