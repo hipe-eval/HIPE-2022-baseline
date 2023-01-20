@@ -80,7 +80,9 @@ def evaluate_iob_files(output_dir: str, groundtruth_path: str, preds_path: str, 
             --ref {groundtruth_path} \
             --pred {preds_path} \
             --task {task} \
-            --outdir {output_dir}
+            --outdir {output_dir} \
+            --hipe_edition hipe-2022 \
+            --log hipe-2022.log
             """
         )
 
