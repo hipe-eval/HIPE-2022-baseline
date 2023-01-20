@@ -20,6 +20,9 @@ from transformers_baseline.model import predict_and_write_tsv
 from transformers_baseline.utils import set_seed, get_custom_logger
 
 
+logger = get_custom_logger(__name__, level=logging.DEBUG)
+
+
 def train(config: 'argparse.Namespace',
           model: transformers.PreTrainedModel,
           train_dataset: 'transformers_baseline.data_preparation.HipeDataset',
@@ -66,7 +69,6 @@ def train(config: 'argparse.Namespace',
     train_results = pd.DataFrame()
 
     model.zero_grad()
-    set_seed(config.seed)
 
     for epoch_num in range(config.epochs):
 
@@ -140,6 +142,7 @@ def train(config: 'argparse.Namespace',
 
 def main(config):
     logger.info(f'Runing pipeline on {config.output_dir.split("/")[-1]}')
+    set_seed(config.seed)
 
     # Create directories
     os.makedirs(config.output_dir, exist_ok=config.overwrite_output_dir)
@@ -206,7 +209,6 @@ def main(config):
 
 
 if __name__ == '__main__':
-    logger = get_custom_logger(__name__, level=logging.DEBUG)
     config = initialize_config(
         # json_path='configs/newseye_de_coarse.json'
     )
