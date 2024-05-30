@@ -164,6 +164,3 @@ def create_prediction_dataset(tokenizer, path: Optional[str] = None, url: Option
                        words=data['words'],
                        labels = data['labels'])
 
-
-import datasets
-
